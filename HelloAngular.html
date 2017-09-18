@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello Angular</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+</head>
+<body ng-app="mainApp">
+
+  <div ng-controller="controller1">
+    <span ng-bind="huruf +''+ ku"></span><br/>
+    <span>{{huruf}} , setelah di filter lowercase = {{huruf | lowercase}}</span>
+  </div>
+
+  <div ng-controller="controller-array">
+      <ul>
+        <li ng-repeat="x in arr | orderBy : 'nama' ">
+          {{x.nama}}
+        </li>
+      </ul>
+
+      <ul>
+        <li ng-repeat="x in arr1 | orderBy : arr1 ">
+          {{x}}
+        </li>
+      </ul>
+  </div>
+
+  <div ng-controller="filter-input">
+    <input type="text" ng-model="nama"/><br/>
+
+
+    <ul>
+      <li ng-repeat="n in names | filter : nama">
+        {{n}}
+      </li>
+    </ul>
+  </div>
+
+
+</body>
+    <script>
+
+      var app = angular.module('mainApp',[]);
+
+      app.controller('filter-input',function($scope){
+          $scope.names = ['arief','putro','Zorro','Brad','Brian','Zack','Bob','Charlie','Niko'];
+      });
+
+      app.controller('controller-array',function($scope){
+          $scope.arr = [
+            {'nama':'He'},
+            {'nama':'Sa'},
+            {'nama':'Av'},
+            {'nama':'Ze'},
+            {'nama':'Wo'},
+            {'nama':'Bo'},
+            {'nama':'Ce'}
+            ];
+
+          $scope.arr1 = [2,4,1,67,0];
+
+      });
+
+      app.controller('controller1',function($scope){
+          $scope.huruf = 'HELLO WORLD';
+          $scope.ku = 'ku';
+      });
+
+
+
+
+    </script>
+
+</html>
